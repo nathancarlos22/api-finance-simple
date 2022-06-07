@@ -1,10 +1,11 @@
 from flask import Flask, jsonify
 from functions import get_ticker
-# import sys
-# sys.setrecursionlimit(10000)
+from flask_cors import CORS
 
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/')
 def index():
