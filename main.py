@@ -17,4 +17,4 @@ def Get_ticker(ticker, interval, period):
     return jsonify(r)
 
 
-app.run(debug=True)
+app.run(debug=True, port=4242)
