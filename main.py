@@ -9,7 +9,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/')
 def index():
-    return '<h1>Hello, World!<h1>'
+    return '<h1>Request: https://api-finance-simple.herokuapp.com/api/simbolo/intervalo/periodo<h1><h2>Exemplo de uso: https://api-finance-simple.herokuapp.com/api/BOVA11.SA/1d/6mo</h2> <p>OBS: Use a extensão JSON VIEWER</p>'
 
 @app.route('/api/<ticker>/<interval>/<period>')
 def Get_ticker(ticker, interval, period):
