@@ -51,8 +51,8 @@ def formatting_response(p1, p2, item1, item2):
     array_obj = []
     for i in range(len(item1)):
         obj = {
+            p2: item2[i],
             p1: item1[i],
-            p2: item2[i]
         }
         array_obj.append(obj)
     return array_obj
