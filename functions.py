@@ -11,7 +11,7 @@ def get_ticker(ticker, interval, period):
     Stock = pd.DataFrame(yf.Ticker(ticker).history(period = period, interval=interval))
     df = Stock.reset_index()
 
-    df['Date'] = pd.to_datetime(df['Date'])
+    df['Date'] = pd.to_datetime(df['Date']).dt.strftime('%Y-%m-%d')
 
     df = df.set_index('Date')
 
