@@ -1,5 +1,5 @@
 from flask import Flask, jsonify
-from functions import get_ticker
+from functions import *
 from flask_cors import CORS
 
 
@@ -17,6 +17,11 @@ def Get_ticker(ticker, interval, period):
     
     return jsonify(r)
 
+@app.route('/api/holders/<ticker>')
+def Get_holders(ticker):
+    r = get_holders(ticker)
+    
+    return jsonify(r)
 
 if __name__ == '__main__':
     app.run(debug=True)

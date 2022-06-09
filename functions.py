@@ -23,5 +23,16 @@ def get_ticker(ticker, interval, period):
         'date': df.index.to_list()
 
     }
+    return response
+
+def get_holders(ticker):
+    ticker = str(ticker)
+    ticker = ticker.upper()
+    Stock = yf.Ticker(ticker)
+    df = Stock.major_holders
+    response = {
+        'ticker': ticker,
+        'holders': df.to_dict()
+    }
 
     return response
