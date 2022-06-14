@@ -17,12 +17,22 @@ def get_ticker(ticker, interval, period):
 
     response = {
         'close': df['Close'].to_list(),
-        'date': df.index.to_list()
+        'date': df.index.to_list(),
+        'symbol': ticker
 
     }
 
-    response = formatting_response('date', 'close', response['date'], response['close'])
-    return response
+    # formatando o response
+    array_obj = []
+    for i in range(len(response['date'])):
+        obj = {
+            'date': response['date'][i],
+            'close': response['close'][i],
+            'symbol': response['symbol']
+        }
+        array_obj.append(obj)
+
+    return array_obj
 
 def get_holders(ticker):
     ticker = str(ticker)
@@ -36,6 +46,7 @@ def get_holders(ticker):
     t = len(name_holders)
     total_holders = int(percentage_holders[t-1])
 
+    # formatando o response
     response = []
     for i in range(t-1):
         convert_porcentage = float( percentage_holders[i].replace("%", ""))/100
@@ -46,13 +57,3 @@ def get_holders(ticker):
         response.append(obj)
 
     return response
-
-def formatting_response(p1, p2, item1, item2):
-    array_obj = []
-    for i in range(len(item1)):
-        obj = {
-            p2: item2[i],
-            p1: item1[i],
-        }
-        array_obj.append(obj)
-    return array_obj
