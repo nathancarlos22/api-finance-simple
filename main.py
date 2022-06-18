@@ -16,6 +16,12 @@ def Get_ticker(ticker, interval, period):
     r = get_ticker(ticker, interval, period)
     
     return jsonify(r)
+    
+@app.route('/api2/<tickers>/<interval>/<period>')
+def Get_tickers(tickers,interval, period):
+    r = get_tickers(tickers,interval, period)
+    
+    return jsonify(r)
 
 @app.route('/api/holders/<ticker>')
 def Get_holders(ticker):

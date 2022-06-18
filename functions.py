@@ -1,6 +1,14 @@
+from urllib import response
 import yfinance as yf
 import pandas as pd
 
+
+def get_tickers(tickers, interval, period):
+    
+    response = {}
+    for ticker in tickers.split(";"):
+        response[ticker] = get_ticker(ticker, interval, period)
+    return response
 
 def get_ticker(ticker, interval, period):
     interval = str(interval)
