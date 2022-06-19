@@ -5,9 +5,21 @@ import pandas as pd
 
 def get_tickers(tickers, interval, period):
     
-    response = {}
+    array_obj = {}
     for ticker in tickers.split(";"):
-        response[ticker] = get_ticker(ticker, interval, period)
+        array_obj[ticker] = get_ticker(ticker, interval, period)
+
+    # formatando o response
+    response = []
+    for ticker in array_obj:
+        for i in range(len(array_obj[ticker])):
+            obj = {
+                'close': array_obj[ticker][i]['close'],
+                'date': array_obj[ticker][i]['date'],
+                'symbol': array_obj[ticker][i]['symbol']
+            }
+            response.append(obj)
+
     return response
 
 def get_ticker(ticker, interval, period):
