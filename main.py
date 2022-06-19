@@ -17,7 +17,7 @@ def Get_ticker(ticker, interval, period):
     
     return jsonify(r)
     
-@app.route('/api2/<tickers>/<interval>/<period>')
+@app.route('/api/tickers/<tickers>/<interval>/<period>')
 def Get_tickers(tickers,interval, period):
     r = get_tickers(tickers,interval, period)
     
@@ -26,6 +26,18 @@ def Get_tickers(tickers,interval, period):
 @app.route('/api/holders/<ticker>')
 def Get_holders(ticker):
     r = get_holders(ticker)
+    
+    return jsonify(r)
+
+@app.route('/api/dividend/<ticker>')
+def Get_dividend(ticker):
+    r = get_dividends(ticker)
+    
+    return jsonify(r)
+
+@app.route('/api/dividends/<tickers>')
+def Get_dividends(tickers):
+    r = get_dividends(tickers)
     
     return jsonify(r)
 

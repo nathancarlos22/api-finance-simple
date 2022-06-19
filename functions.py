@@ -77,3 +77,54 @@ def get_holders(ticker):
         response.append(obj)
 
     return response
+
+
+def get_dividend(ticker):
+    ticker = str(ticker)
+    ticker = ticker.upper()
+    Stock = yf.Ticker(ticker)
+    
+    dividends = Stock.dividends.to_list()
+
+    dates = [x.strftime('%Y-%m-%d') for x in Stock.dividends.index.to_list()]
+    
+    t = len(dividends)
+
+    # formatando o response
+    response = []
+    for i in range(t):
+        obj = {
+            "dividend": dividends[i],
+            "date": dates[i],
+            "symbol": ticker
+
+        }
+        response.append(obj)
+
+    return response
+
+def get_dividends(tickers):
+    ticker = str(tickers)
+    ticker = ticker.upper()
+    Stock = yf.Ticker(ticker)
+    df = Stock.dividends
+    
+    t = len(df)
+
+    # formatando o response
+    array_obj = {}
+    for ticker in tickers.split(";"):
+        array_obj[ticker] = get_dividend(ticker)
+
+    # formatando o response
+    response = []
+    for ticker in array_obj:
+        for i in range(len(array_obj[ticker])):
+            obj = {
+                'dividend': array_obj[ticker][i]['dividend'],
+                'date': array_obj[ticker][i]['date'],
+                'symbol': array_obj[ticker][i]['symbol']
+            }
+            response.append(obj)
+
+    return response
