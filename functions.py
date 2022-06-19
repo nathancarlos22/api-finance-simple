@@ -82,10 +82,14 @@ def get_holders(ticker):
 def get_dividend(ticker):
     ticker = str(ticker)
     ticker = ticker.upper()
+
+    if ticker == "":
+        return []
+
     Stock = yf.Ticker(ticker)
     
     dividends = Stock.dividends.to_list()
-
+    
     dates = [x.strftime('%Y-%m-%d') for x in Stock.dividends.index.to_list()]
     
     t = len(dividends)
@@ -104,12 +108,6 @@ def get_dividend(ticker):
     return response
 
 def get_dividends(tickers):
-    ticker = str(tickers)
-    ticker = ticker.upper()
-    Stock = yf.Ticker(ticker)
-    df = Stock.dividends
-    
-    t = len(df)
 
     # formatando o response
     array_obj = {}
